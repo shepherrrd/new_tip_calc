@@ -33,7 +33,7 @@ class _billsplitterState extends State<billsplitter> {
         color: Colors.white,
         child: ListView(
           scrollDirection: Axis.vertical,
-          padding: EdgeInsets.all(20.5),
+          padding: EdgeInsets.all(20.6),
           children: <Widget>[
             Container(
               width: 150,
