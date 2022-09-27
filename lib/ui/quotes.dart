@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_const_constructors
+
 import 'package:flutter/material.dart';
 
 class wisdom extends StatefulWidget {
@@ -41,7 +43,7 @@ class _wisdomState extends State<wisdom> {
             ),
             Padding(
               padding: const EdgeInsets.only(top: 18.0),
-              child: FlatButton.icon(
+              child: TextButton.icon(
                 onPressed: _showQuote,
                 icon: Icon(
                   Icons.wb_sunny,
@@ -51,7 +53,6 @@ class _wisdomState extends State<wisdom> {
                   "Inspire me !",
                   style: TextStyle(color: Colors.white),
                 ),
-                color: Colors.deepPurple.shade100,
               ),
             ),
             Spacer(),
