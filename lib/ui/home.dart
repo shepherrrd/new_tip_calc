@@ -87,7 +87,7 @@ class Custombutton extends StatelessWidget {
         );
 
         // ignore: deprecated_member_use
-        Scaffold.of(context).showSnackBar(snackbar);
+        ScaffoldMessenger.of(context).showSnackBar(snackbar);
       },
       child: Container(
         padding: EdgeInsets.all(10.0),
