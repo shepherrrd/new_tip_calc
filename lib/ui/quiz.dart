@@ -1,4 +1,6 @@
-// ignore_for_file: prefer_const_constructors
+// ignore_for_file: prefer_const_constructors, sort_child_properties_last, avoid_unnecessary_containers, non_constant_identifier_names, camel_case_types
+
+import 'dart:html';
 
 import 'package:flutter/material.dart';
 import 'package:spark/model/questions.dart';
@@ -15,6 +17,7 @@ class _quizAppState extends State<quizApp> {
   int _currentQuestionIndex = 0;
   var isButtonClickable = true;
   var isButtonClickable2 = false;
+  var currentbuttonindex = true;
   String correct = "";
   String wrong = "";
   Color grad_blue = Hexcolor("#33ccff");
@@ -83,13 +86,80 @@ class _quizAppState extends State<quizApp> {
               ),
             ),
             Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: <Widget>[
+                Opacity(
+                  opacity: currentbuttonindex ? 1.0 : 0.2,
+                  child: SizedBox(
+                    height: 30,
+                    width: 30,
+                    child: ElevatedButton(
+                      onPressed: () {
+                        currentButtonindex(0);
+                      },
+                      child: Text("1"),
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.greenAccent,
+                        textStyle: TextStyle(fontSize: 13),
+                      ),
+                    ),
+                  ),
+                ),
+                SizedBox(
+                  width: 10,
+                ),
+                Opacity(
+                  opacity: currentbuttonindex ? 1.0 : 0.2,
+                  child: SizedBox(
+                    height: 30,
+                    width: 30,
+                    child: ElevatedButton(
+                      onPressed: () {
+                        currentButtonindex(1);
+                      },
+                      child: Center(child: Text("2")),
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.greenAccent,
+                        textStyle: TextStyle(fontSize: 13),
+                      ),
+                    ),
+                  ),
+                ),
+                SizedBox(
+                  width: 10,
+                ),
+                SizedBox(
+                  height: 30,
+                  width: 30,
+                  child: Opacity(
+                    opacity: currentbuttonindex ? 1.0 : 0.2,
+                    child: ElevatedButton(
+                      onPressed: () {
+                        currentButtonindex(2);
+                      },
+                      child: Center(child: Text("3")),
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: currentbuttonindex
+                            ? Colors.greenAccent
+                            : Colors.blue,
+                        textStyle: TextStyle(fontSize: 13),
+                      ),
+                    ),
+                  ),
+                ),
+                SizedBox(
+                  width: 10,
+                ),
+              ],
+            ),
+            Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: <Widget>[
                 Opacity(
                   opacity: isButtonClickable2 ? 1.0 : 0,
                   child: ElevatedButton(
                       style: ElevatedButton.styleFrom(
-                          primary: Colors.blueGrey.shade900),
+                          backgroundColor: Colors.blueGrey.shade900),
                       onPressed: (() {
                         _previousQuestion();
                         makeActive();
@@ -98,12 +168,15 @@ class _quizAppState extends State<quizApp> {
                 ),
                 ElevatedButton(
                     style: ElevatedButton.styleFrom(
-                        primary: Colors.blueGrey.shade900),
-                    onPressed: (() => _checkAnswer(true)),
+                        backgroundColor: Colors.blueGrey.shade900),
+                    onPressed: (() {
+                      _checkAnswer(true);
+                      makeNull();
+                    }),
                     child: Text("True", style: TextStyle(color: Colors.white))),
                 ElevatedButton(
                     style: ElevatedButton.styleFrom(
-                        primary: Colors.blueGrey.shade900),
+                        backgroundColor: Colors.blueGrey.shade900),
                     onPressed: (() {
                       _checkAnswer(false);
                       makeNull();
@@ -116,7 +189,7 @@ class _quizAppState extends State<quizApp> {
                   opacity: isButtonClickable ? 1.0 : 0,
                   child: ElevatedButton(
                       style: ElevatedButton.styleFrom(
-                          primary: Colors.blueGrey.shade900),
+                          backgroundColor: Colors.blueGrey.shade900),
                       onPressed: (() {
                         _nextQuestion();
                         if (isButtonClickable) {
@@ -150,15 +223,15 @@ class _quizAppState extends State<quizApp> {
 
   _checkAnswer(bool userChoice) {
     setState(() {
+      if (_currentQuestionIndex != (questionBank.length - 1)) {
+        _currentQuestionIndex++;
+      }
       if (userChoice == questionBank[_currentQuestionIndex].isCorrect) {
         final snackBar = SnackBar(
             backgroundColor: Colors.green,
             duration: const Duration(milliseconds: 500),
             content: Text("Correct"));
         ScaffoldMessenger.of(context).showSnackBar(snackBar);
-        if (_currentQuestionIndex != (questionBank.length - 1)) {
-          _currentQuestionIndex++;
-        }
       } else {
         final snackBar = SnackBar(
             backgroundColor: Colors.red,
@@ -167,7 +240,7 @@ class _quizAppState extends State<quizApp> {
         ScaffoldMessenger.of(context).showSnackBar(snackBar);
       }
       if (_currentQuestionIndex != (questionBank.length - 1)) {
-        _currentQuestionIndex++;
+        // _currentQuestionIndex++;
       }
       if (_currentQuestionIndex == (questionBank.length - 1)) {
         isButtonClickable = false;
@@ -211,6 +284,18 @@ class _quizAppState extends State<quizApp> {
       }
       if (_currentQuestionIndex == 0) {
         isButtonClickable2 = false;
+      }
+    });
+  }
+
+  currentButtonindex(int i) {
+    setState(() {
+      if (i != _currentQuestionIndex) {
+        _currentQuestionIndex = i;
+        currentbuttonindex = false;
+        if (i == _currentQuestionIndex) {
+          // currentbuttonindex = true;
+        }
       }
     });
   }
