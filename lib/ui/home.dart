@@ -1,7 +1,5 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, deprecated_member_use, unused_element, unused_import, avoid_web_libraries_in_flutter
 
-import 'dart:html';
-
 import 'package:flutter/material.dart';
 
 import 'dart:io';
