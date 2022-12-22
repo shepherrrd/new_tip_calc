@@ -7,5 +7,6 @@ import 'ui/billsplitter.dart';
 import 'ui/home.dart';
 
 void main() => runApp(const MaterialApp(
+      debugShowCheckedModeBanner: false,
       home: MovieListView(),
     ));
