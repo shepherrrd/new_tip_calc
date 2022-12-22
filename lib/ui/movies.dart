@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 // ignore: unused_import
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
+import 'package:spark/ui/movie_ui.dart';
 import 'package:spark/util/hex.dart';
 
 import '../util/movie.dart';
@@ -174,7 +175,8 @@ class MovieListViewDetails extends StatelessWidget {
       body: ListView(
         children: [
           MovieDetailsthumbnail(thumbnail: movie.images[0]),
-          MovieDetailsWithHeaderPoster(movie: movie)
+          MovieDetailsWithHeaderPoster(movie: movie),
+          MovieDetailsCasts(movie: movie)
         ],
       ),
       // body: Center(
@@ -191,86 +193,5 @@ class MovieListViewDetails extends StatelessWidget {
   }
 }
 
-class MovieDetailsthumbnail extends StatelessWidget {
-  final String thumbnail;
-  const MovieDetailsthumbnail({Key, key, required this.thumbnail})
-      : super(key: key);
 
-  @override
-  Widget build(BuildContext context) {
-    return Stack(
-      alignment: Alignment.bottomCenter,
-      children: [
-        Stack(
-          alignment: Alignment.center,
-          children: [
-            Container(
-              width: MediaQuery.of(context).size.width,
-              height: 190,
-              decoration: BoxDecoration(
-                  image: DecorationImage(
-                      image: NetworkImage(thumbnail), fit: BoxFit.cover)),
-            ),
-            Icon(
-              Icons.play_circle_outlined,
-              size: 100,
-              color: Colors.white,
-            )
-          ],
-        ),
-        Container(
-          height: 80,
-          decoration: BoxDecoration(
-              gradient: LinearGradient(
-                  colors: [Color(0x00f5f5f5), Color(0xfff5f5f5)],
-                  begin: Alignment.topCenter,
-                  end: Alignment.bottomCenter)),
-        )
-      ],
-    );
-  }
-}
-
-class MovieDetailsWithHeaderPoster extends StatelessWidget {
-  final Movie movie;
-  const MovieDetailsWithHeaderPoster({
-    Key? key,
-    required this.movie,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 16.0),
-      child: Row(
-        children: [MoviePoster(poster: movie.images[0].toString())],
-      ),
-    );
-  }
-}
-
-class MoviePoster extends StatelessWidget {
-  final String poster;
-  const MoviePoster({
-    Key? key,
-    required this.poster,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    var borderradius = BorderRadius.all(Radius.circular(10));
-    return Card(
-      child: ClipRRect(
-        borderRadius: borderradius,
-        child: Container(
-          width: MediaQuery.of(context).size.width / 4,
-          height: 155,
-          decoration: BoxDecoration(
-              image: DecorationImage(
-                  image: NetworkImage(poster), fit: BoxFit.cover)),
-        ),
-      ),
-    );
-  }
-}
 //End movie app

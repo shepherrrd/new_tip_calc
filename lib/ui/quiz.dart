@@ -97,7 +97,7 @@ class _quizAppState extends State<quizApp> {
                       },
                       child: Text("1"),
                       style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.greenAccent,
+                        primary: Colors.greenAccent,
                         textStyle: TextStyle(fontSize: 13),
                       ),
                     ),
@@ -117,7 +117,7 @@ class _quizAppState extends State<quizApp> {
                       },
                       child: Center(child: Text("2")),
                       style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.greenAccent,
+                        primary: Colors.greenAccent,
                         textStyle: TextStyle(fontSize: 13),
                       ),
                     ),
@@ -137,7 +137,7 @@ class _quizAppState extends State<quizApp> {
                       },
                       child: Center(child: Text("3")),
                       style: ElevatedButton.styleFrom(
-                        backgroundColor: currentbuttonindex
+                      primary: currentbuttonindex
                             ? Colors.greenAccent
                             : Colors.blue,
                         textStyle: TextStyle(fontSize: 13),
@@ -157,7 +157,7 @@ class _quizAppState extends State<quizApp> {
                   opacity: isButtonClickable2 ? 1.0 : 0,
                   child: ElevatedButton(
                       style: ElevatedButton.styleFrom(
-                          backgroundColor: Colors.blueGrey.shade900),
+                         primary: Colors.blueGrey.shade900),
                       onPressed: (() {
                         _previousQuestion();
                         makeActive();
@@ -166,7 +166,7 @@ class _quizAppState extends State<quizApp> {
                 ),
                 ElevatedButton(
                     style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.blueGrey.shade900),
+                        primary: Colors.blueGrey.shade900),
                     onPressed: (() {
                       _checkAnswer(true);
                       makeNull();
@@ -174,7 +174,7 @@ class _quizAppState extends State<quizApp> {
                     child: Text("True", style: TextStyle(color: Colors.white))),
                 ElevatedButton(
                     style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.blueGrey.shade900),
+                       primary: Colors.blueGrey.shade900),
                     onPressed: (() {
                       _checkAnswer(false);
                       makeNull();
@@ -187,7 +187,7 @@ class _quizAppState extends State<quizApp> {
                   opacity: isButtonClickable ? 1.0 : 0,
                   child: ElevatedButton(
                       style: ElevatedButton.styleFrom(
-                          backgroundColor: Colors.blueGrey.shade900),
+                         primary: Colors.blueGrey.shade900),
                       onPressed: (() {
                         _nextQuestion();
                         if (isButtonClickable) {
